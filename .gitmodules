@@ -34,3 +34,9 @@
 [submodule "bundle/ctrlp"]
 	path = bundle/ctrlp
 	url = git@github.com:ctrlpvim/ctrlp.vim.git
+[submodule "bundle/ag"]
+	path = bundle/ag
+	url = git@github.com:rking/ag.vim.git
+[submodule "bundle/colorschemes"]
+	path = bundle/colorschemes
+	url = https://github.com/flazz/vim-colorschemes.git

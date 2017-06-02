@@ -2,7 +2,7 @@ execute pathogen#infect('~/.vim/bundle/{}')
 syntax on
 filetype plugin indent on
 
-colorscheme Tomorrow-Night
+colorscheme solarized
 
 let mapleader=","
 
@@ -43,12 +43,11 @@ let g:delimitMate_expand_cr = 1    " Turns on/off the expansion of <CR>
 " Ctrl-P to Display the file browser tree
 nmap <C-p> :NERDTreeToggle<CR>
 " ,p to show current file in the tree
-nmap <leader>p :NERDTreeFind<CR>
+nmap <leader>n :NERDTreeFind<CR>
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-"
 " nerdcommenter
 " ,/ to invert comment on the current line/selection
 nmap <leader>/ :call NERDComment(0, "invert")<cr>
@@ -88,3 +87,6 @@ let g:lightline = {
 
 " see the changes you make to vimrc without having to close & open
 nmap <leader>s :source ~/.vimrc<cr>
+
+let g:rspec_command = "Dispatch bundle exec rspec {spec}"
+let g:rspec_runner = "os_x_iterm"
