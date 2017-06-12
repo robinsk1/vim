@@ -61,6 +61,8 @@ nnoremap <C-H> <C-W><C-H>
 let g:ctrlp_map = '<leader>,'
 let g:ctrlp_cmd = 'CtrlP'
 
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
 nmap <leader>. :CtrlPClearCache<cr>:CtrlP<cr>
 nmap <leader>l :CtrlPLine<cr>
 nmap <leader>b :CtrlPBuff<cr>
