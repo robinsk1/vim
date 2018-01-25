@@ -1,7 +1,7 @@
 execute pathogen#infect('~/.vim/bundle/{}')
 syntax on
 filetype plugin indent on
-colorscheme solarized
+colorscheme Tomorrow-Night
 
 let mapleader=","
 let g:rspec_command = "Dispatch bundle exec rspec %"
@@ -21,6 +21,7 @@ let g:lightline = {
       \   'gitbranch': 'fugitive#head'
       \ },
       \ }
+let g:NERDTreeShowHidden = 1
 
 set guifont=Menlo\ Regular:h18
 set lines=35 columns=150
@@ -44,6 +45,7 @@ set hlsearch            " Highlight search match
 set ignorecase          " Do case insensitive matching
 set smartcase           " do not ignore if search pattern has CAPS
 set ttimeoutlen=50      " fast Esc to normal mode
+set noswapfile
 
 autocmd BufRead,BufNewFile *.ui set filetype=ruby
 " nerdtree
