@@ -1,3 +1,5 @@
+### Set-up vimrc and git submodules
+
 ```
 $ cd ~
 
@@ -17,7 +19,8 @@ $ git submodule update
 $ brew install macvim
 
 $ brew install the_silver_searcher
-``
+```
+
 ### useful links
 
 http://marcgg.com/blog/2016/03/01/vimrc-example/
