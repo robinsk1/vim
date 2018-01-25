@@ -13,7 +13,7 @@ $ git submodule update
 ```
 ========================
 
-``
+```
 $ brew install macvim
 
 $ brew install the_silver_searcher
