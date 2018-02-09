@@ -52,9 +52,6 @@
 [submodule "bundle/synstastic"]
 	path = bundle/synstastic
 	url = https://github.com/scrooloose/syntastic.git
-[submodule "bundle/tabular"]
-	path = bundle/tabular
-	url = https://github.com/godlygeek/tabular
-[submodule "bundle/minitest"]
-	path = bundle/minitest
-	url = https://github.com/seattlerb/minitest
+[submodule "bundle/vim-flay"]
+	path = bundle/vim-flay
+	url = https://github.com/prophittcorey/vim-flay.git

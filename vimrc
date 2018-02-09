@@ -67,6 +67,8 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
+nnoremap <leader>fl :Flay<CR>
+nnoremap <leader>zs :ConqueTermVSplit zsh<CR>
 
 " ,f for global git search for word under the cursor (with highlight)
 nmap <leader>f :let @/="\\<<C-R><C-W>\\>"<CR>:set hls<CR>:silent Ggrep -w "<C-R><C-W>"<CR>:ccl<CR>:cw<CR><CR>
@@ -83,3 +85,14 @@ nmap <leader>g :silent Ggrep<space>
 "map <leader>s :call RunNearestSpec()<CR>
 "map <leader>l :call RunLastSpec()<CR>
 "map <leader>a :call RunAllSpecs()<CR>
+
+"syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_ruby_checkers = ['rubocop']
