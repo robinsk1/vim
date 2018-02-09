@@ -55,3 +55,6 @@
 [submodule "bundle/vim-flay"]
 	path = bundle/vim-flay
 	url = https://github.com/prophittcorey/vim-flay.git
+[submodule "bundle/conque-shell"]
+	path = bundle/conque-shell
+	url = https://github.com/oplatek/Conque-Shell.git
