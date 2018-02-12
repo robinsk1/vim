@@ -69,6 +69,7 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
 nnoremap <leader>fl :Flay<CR>
 nnoremap <leader>zs :ConqueTermVSplit zsh<CR>
+nnoremap <C-a> <esc>ggVG<CR>
 
 " ,f for global git search for word under the cursor (with highlight)
 nmap <leader>f :let @/="\\<<C-R><C-W>\\>"<CR>:set hls<CR>:silent Ggrep -w "<C-R><C-W>"<CR>:ccl<CR>:cw<CR><CR>
@@ -80,7 +81,6 @@ nmap <leader>b :CtrlPBuff<cr>
 nmap <leader>m :CtrlPBufTag<cr>
 nmap <leader>M :CtrlPBufTagAll<cr>
 nmap <leader>g :silent Ggrep<space>
-
 "map <leader>t :call RunCurrentSpecFile()<CR>
 "map <leader>s :call RunNearestSpec()<CR>
 "map <leader>l :call RunLastSpec()<CR>
