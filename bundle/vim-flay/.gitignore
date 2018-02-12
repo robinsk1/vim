@@ -1,0 +1,21 @@
+# Ignore any operating system artifacts
+._*
+[Tt]humbs.db
+[Dd]esktop.ini
+.DS_Store
+.Trashes
+.Spotlight-V100
+
+# Ignore any Vim artifacts
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
+
+# Ignore any ctag ifles
+tags
+
+# Ignore all t task files
+.tasks.*
