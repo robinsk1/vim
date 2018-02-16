@@ -55,3 +55,6 @@
 [submodule "bundle/conque-shell"]
 	path = bundle/conque-shell
 	url = https://github.com/oplatek/Conque-Shell.git
+[submodule "bundle/endwise"]
+	path = bundle/endwise
+	url = https://github.com/tpope/vim-endwise.git
