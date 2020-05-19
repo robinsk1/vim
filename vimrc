@@ -10,6 +10,7 @@ let g:delimitMate_expand_space = 1 " Turns on/off the expansion of <Space>
 let g:delimitMate_expand_cr = 1    " Turns on/off the expansion of <CR>
 let g:ctrlp_map = '<leader>,'
 let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_max_files = 0
 let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:lightline = {
       \ 'colorscheme': 'wombat',
@@ -46,8 +47,10 @@ set ignorecase          " Do case insensitive matching
 set smartcase           " do not ignore if search pattern has CAPS
 set ttimeoutlen=50      " fast Esc to normal mode
 set noswapfile
+set nocp
+set mouse=a
 
-autocmd BufRead,BufNewFile *.ui set filetype=ruby
+"autocmd BufRead,BufNewFile *.ui set filetype=ruby
 " nerdtree
 " Ctrl-P to Display the file browser tree
 nmap <C-p> :NERDTreeToggle<CR>
@@ -81,6 +84,7 @@ nmap <leader>b :CtrlPBuff<cr>
 nmap <leader>m :CtrlPBufTag<cr>
 nmap <leader>M :CtrlPBufTagAll<cr>
 nmap <leader>g :silent Ggrep<space>
+nmap <leader>lc :lclose<cr> 
 "map <leader>t :call RunCurrentSpecFile()<CR>
 "map <leader>s :call RunNearestSpec()<CR>
 "map <leader>l :call RunLastSpec()<CR>
@@ -91,9 +95,9 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_ruby_checkers = ['rubocop']
 
