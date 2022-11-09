@@ -1,4 +1,37 @@
-execute pathogen#infect('~/.vim/bundle/{}')
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/bundle')
+Plug 'rking/ag.vim'
+Plug 'vim-ruby/vim-ruby'
+Plug 'wincent/command-t'
+Plug 'scrooloose/nerdcommenter'
+Plug 'itchyny/lightline.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'ervandew/supertab'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'vim-multiple-cursors'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-rails'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'flazz/vim-colorschemes'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'thoughtbot/vim-rspec'
+Plug 'tpope/vim-dispatch'
+Plug 'scrooloose/syntastic'
+Plug 'oplatek/Conque-Shell'
+Plug 'tpope/vim-endwise'
+Plug 'pangloss/vim-javascript'
+Plug 'elzr/vim-json'
+Plug 'mxw/vim-jsx'
+Plug 'tpope/vim-surround'
+call plug#end()
+
+"execute pathogen#infect('~/.vim/bundle/{}')
 syntax on
 filetype plugin indent on
 colorscheme Tomorrow-Night
@@ -73,6 +106,7 @@ nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
 nnoremap <leader>fl :Flay<CR>
 nnoremap <leader>zs :ConqueTermVSplit zsh<CR>
 nnoremap <C-a> <esc>ggVG<CR>
+nnoremap <leader>o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=line('.')<CR> \| xargs open<CR><CR>
 
 " ,f for global git search for word under the cursor (with highlight)
 nmap <leader>f :let @/="\\<<C-R><C-W>\\>"<CR>:set hls<CR>:silent Ggrep -w "<C-R><C-W>"<CR>:ccl<CR>:cw<CR><CR>
