@@ -1,8 +1,14 @@
+" Plugins (vim-plug) https://github.com/junegunn/vim-plug
+"
+" Automatic installation.
+" https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+
+"let g:ale_disable_lsp = 1
 
 call plug#begin('~/.vim/bundle')
 Plug 'rking/ag.vim'
@@ -11,10 +17,9 @@ Plug 'wincent/command-t'
 Plug 'scrooloose/nerdcommenter'
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'ervandew/supertab'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -29,13 +34,20 @@ Plug 'pangloss/vim-javascript'
 Plug 'elzr/vim-json'
 Plug 'mxw/vim-jsx'
 Plug 'tpope/vim-surround'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'dense-analysis/ale'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'maximbaz/lightline-ale'
+Plug 'ruanyl/vim-gh-line'
 call plug#end()
 
-"execute pathogen#infect('~/.vim/bundle/{}')
 syntax on
 filetype plugin indent on
 colorscheme Tomorrow-Night
 
+let g:ale_sign_column_always = 1
+"let g:ale_linter_aliases = {'jsx': ['css', 'javascript']}
+"let g:ale_linters = {'jsx': ['stylelint', 'eslint']}
 let mapleader=","
 let g:rspec_command = "Dispatch bundle exec rspec %"
 let g:rspec_runner = "os_x_iterm2"
@@ -55,7 +67,95 @@ let g:lightline = {
       \   'gitbranch': 'fugitive#head'
       \ },
       \ }
+
+let g:lightline.component_expand = {
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_infos': 'lightline#ale#infos',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ }
+
+let g:lightline.component_type = {
+      \     'linter_checking': 'right',
+      \     'linter_infos': 'right',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'right',
+      \ }
+
+let g:lightline.active = {
+            \ 'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ],
+            \            [ 'lineinfo' ],
+	    \            [ 'percent' ],
+	    \            [ 'fileformat', 'fileencoding', 'filetype'] ] }
+
 let g:NERDTreeShowHidden = 1
+
+" coc.nvim
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Mappings for CoCList
+" Show all diagnostics.
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+" Show commands.
+nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document.
+nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols.
+nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+set encoding=utf-8
+set autoread
 
 set guifont=Menlo\ Regular:h18
 set lines=35 columns=150
@@ -82,6 +182,12 @@ set ttimeoutlen=50      " fast Esc to normal mode
 set noswapfile
 set nocp
 set mouse=a
+
+set wildmenu                    " better file/command completion
+set wildmode=list:longest
+set wildignore+=*.o,*.obj,*.png,*.jpg,*.gif,tags
+set wildignore+=bundle/**,vendor/bundle/**,vendor/cache/**,vendor/gems/**
+set wildignore+=log/**,tmp/**,*.scssc,*.sassc,*sass-cache*,coverage/**
 
 "autocmd BufRead,BufNewFile *.ui set filetype=ruby
 " nerdtree
