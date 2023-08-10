@@ -46,8 +46,8 @@ filetype plugin indent on
 colorscheme Tomorrow-Night
 
 let g:ale_sign_column_always = 1
-"let g:ale_linter_aliases = {'jsx': ['css', 'javascript']}
-"let g:ale_linters = {'jsx': ['stylelint', 'eslint']}
+let g:ale_linter_aliases = {'jsx': ['css', 'javascript']}
+let g:ale_linters = {'jsx': ['stylelint', 'eslint']}
 let mapleader=","
 let g:rspec_command = "Dispatch bundle exec rspec %"
 let g:rspec_runner = "os_x_iterm2"
@@ -95,7 +95,7 @@ let g:NERDTreeShowHidden = 1
 " coc.nvim
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
-set updatetime=300
+set updatetime=3000
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
@@ -235,11 +235,11 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_ruby_checkers = ['rubocop']
+"let g:syntastic_always_populate_loc_list = 0
+"let g:syntastic_auto_loc_list = 0
+"let g:syntastic_check_on_open = 0
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_ruby_checkers = ['rubocop']
 
 command! Difft windo diffthis
 command! Diffo windo diffoff
