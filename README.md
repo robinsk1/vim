@@ -6,33 +6,29 @@ $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/t
 
 $ brew install asdf
 
-echo -e "\n. \"$(brew --prefix asdf)/libexec/asdf.sh\"" >> ~/.zshrc
-echo -e "\n. \"$(brew --prefix asdf)/etc/bash_completion.d/asdf.bash\"" >> ~/.zshrc
+$ echo -e "\n. \"$(brew --prefix asdf)/libexec/asdf.sh\"" >> ~/.zshrc
+$ echo -e "\n. \"$(brew --prefix asdf)/etc/bash_completion.d/asdf.bash\"" >> ~/.zshrc
 
-asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-asdf install nodejs latest
-asdf global nodejs latest
-asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
-asdf install ruby latest
-asdf global ruby latest
+$ asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+$ asdf install nodejs latest
+$ asdf global nodejs latest
+$ asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
+$ asdf install ruby latest
+$ asdf global ruby latest
 ```
-### Set-up vimrc
+### setup vimrc
 
 ```
 $ cd ~
-
 $ git clone git@github.com:robinsk1/vim.git .vim
-
 $ ln -s ~/.vim/vimrc ~/.vimrc
 
 ```
 ### setup macvim
 ```
 $ brew install macvim
-
-run :PlugInstall
-
-gem install solargraph
+open macvim, run `:PlugInstall` 
+$ gem install solargraph
 
 install coc extensions as required
 
