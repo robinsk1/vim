@@ -11,52 +11,129 @@ endif
 "let g:ale_disable_lsp = 1
 
 call plug#begin('~/.vim/bundle')
-Plug 'rking/ag.vim'
-Plug 'vim-ruby/vim-ruby'
-Plug 'wincent/command-t'
-Plug 'scrooloose/nerdcommenter'
-Plug 'itchyny/lightline.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+" ruby
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'vim-ruby/vim-ruby'
+" visuals
+Plug 'itchyny/lightline.vim'
 Plug 'flazz/vim-colorschemes'
-Plug 'jistr/vim-nerdtree-tabs'
-Plug 'thoughtbot/vim-rspec'
-Plug 'tpope/vim-dispatch'
-Plug 'scrooloose/syntastic'
-Plug 'oplatek/Conque-Shell'
-Plug 'tpope/vim-endwise'
-Plug 'pangloss/vim-javascript'
-Plug 'elzr/vim-json'
-Plug 'mxw/vim-jsx'
-Plug 'tpope/vim-surround'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'airblade/vim-gitgutter'
+" lint
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'maximbaz/lightline-ale'
 Plug 'ruanyl/vim-gh-line'
+Plug 'scrooloose/syntastic'
+" js
+Plug 'pangloss/vim-javascript'
+Plug 'elzr/vim-json'
+Plug 'mxw/vim-jsx'
+" search
+Plug 'rking/ag.vim'
+Plug 'wincent/command-t'
+Plug 'ctrlpvim/ctrlp.vim'
+" git
+Plug 'tpope/vim-fugitive'
+" nerdtree
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+" formatting
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-surround'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+" rspec
+Plug 'thoughtbot/vim-rspec'
+Plug 'tpope/vim-dispatch'
+" other
+Plug 'oplatek/Conque-Shell'
 call plug#end()
 
 syntax on
 filetype plugin indent on
 colorscheme Tomorrow-Night
 
+set encoding=utf-8
+set autoread
+set guifont=Menlo\ Regular:h18
+set lines=35 columns=150
+set number
+set hidden
+set history=100
+set nowrap
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set smartindent
+set autoindent
+set hlsearch
+set showmatch
+set noshowmode
+set laststatus=2
+set splitbelow
+set splitright
+set incsearch           " Incremental search
+set hlsearch            " Highlight search match
+set ignorecase          " Do case insensitive matching
+set smartcase           " do not ignore if search pattern has CAPS
+set ttimeoutlen=50      " fast Esc to normal mode
+set noswapfile
+set nocp
+set mouse=a
+
+set wildmenu                    " better file/command completion
+set wildmode=list:longest
+set wildignore+=*.o,*.obj,*.png,*.jpg,*.gif,tags
+set wildignore+=bundle/**,vendor/bundle/**,vendor/cache/**,vendor/gems/**
+set wildignore+=log/**,tmp/**,*.scssc,*.sassc,*sass-cache*,coverage/**
+
+set nobackup
+set nowritebackup
+
+"syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+" coc.nvim
+set updatetime=300
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
+
+let mapleader=","
+
 let g:ale_sign_column_always = 1
 let g:ale_linter_aliases = {'jsx': ['css', 'javascript']}
 let g:ale_linters = {'jsx': ['stylelint', 'eslint']}
-let mapleader=","
+let g:ale_enable_hover = 0
+let g:ale_hover_to_floating_preview = 0
+let g:ale_completion_enabled = 1
+let g:ale_set_balloons = 1
+let g:ale_sign_error = '●'
+let g:ale_sign_warning = '.'
+let g:ale_enabled = 0
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_save = 0
+let g:ale_fix_on_save = 1
+let g:ale_virtualtext_cursor = 'current'
+let g:ale_lint_on_text_changed = 'never'
+
 let g:rspec_command = "Dispatch bundle exec rspec %"
 let g:rspec_runner = "os_x_iterm2"
+
 let g:delimitMate_expand_space = 1 " Turns on/off the expansion of <Space>
 let g:delimitMate_expand_cr = 1    " Turns on/off the expansion of <CR>
+
 let g:ctrlp_map = '<leader>,'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_max_files = 0
+
 let g:ackprg = 'ag --nogroup --nocolor --column'
+
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
@@ -67,7 +144,6 @@ let g:lightline = {
       \   'gitbranch': 'fugitive#head'
       \ },
       \ }
-
 let g:lightline.component_expand = {
       \  'linter_checking': 'lightline#ale#checking',
       \  'linter_infos': 'lightline#ale#infos',
@@ -75,7 +151,6 @@ let g:lightline.component_expand = {
       \  'linter_errors': 'lightline#ale#errors',
       \  'linter_ok': 'lightline#ale#ok',
       \ }
-
 let g:lightline.component_type = {
       \     'linter_checking': 'right',
       \     'linter_infos': 'right',
@@ -83,7 +158,6 @@ let g:lightline.component_type = {
       \     'linter_errors': 'error',
       \     'linter_ok': 'right',
       \ }
-
 let g:lightline.active = {
             \ 'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ],
             \            [ 'lineinfo' ],
@@ -92,14 +166,6 @@ let g:lightline.active = {
 
 let g:NERDTreeShowHidden = 1
 
-" coc.nvim
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=3000
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-set signcolumn=yes
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: There's always complete item selected by default, you may want to enable
@@ -154,42 +220,7 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-set encoding=utf-8
-set autoread
-
-set guifont=Menlo\ Regular:h18
-set lines=35 columns=150
-set number
-set hidden
-set history=100
-set nowrap
-set tabstop=2
-set shiftwidth=2
-set expandtab
-set smartindent
-set autoindent
-set hlsearch
-set showmatch
-set noshowmode
-set laststatus=2
-set splitbelow
-set splitright
-set incsearch           " Incremental search
-set hlsearch            " Highlight search match
-set ignorecase          " Do case insensitive matching
-set smartcase           " do not ignore if search pattern has CAPS
-set ttimeoutlen=50      " fast Esc to normal mode
-set noswapfile
-set nocp
-set mouse=a
-
-set wildmenu                    " better file/command completion
-set wildmode=list:longest
-set wildignore+=*.o,*.obj,*.png,*.jpg,*.gif,tags
-set wildignore+=bundle/**,vendor/bundle/**,vendor/cache/**,vendor/gems/**
-set wildignore+=log/**,tmp/**,*.scssc,*.sassc,*sass-cache*,coverage/**
-
-"autocmd BufRead,BufNewFile *.ui set filetype=ruby
+" autocmd BufRead,BufNewFile *.ui set filetype=ruby
 " nerdtree
 " Ctrl-P to Display the file browser tree
 nmap <C-p> :NERDTreeToggle<CR>
@@ -217,7 +248,7 @@ nnoremap <leader>o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<
 " ,f for global git search for word under the cursor (with highlight)
 nmap <leader>f :let @/="\\<<C-R><C-W>\\>"<CR>:set hls<CR>:silent Ggrep -w "<C-R><C-W>"<CR>:ccl<CR>:cw<CR><CR>
 " see the changes you make to vimrc without having to close & open
-nmap <leader>ss :source ~/.vimrc<cr>
+nmap <leader>s :source ~/.vimrc<cr>
 nmap <leader>. :CtrlPClearCache<cr>:CtrlP<cr>
 nmap <leader>l :CtrlPLine<cr>
 nmap <leader>b :CtrlPBuff<cr>
@@ -230,16 +261,12 @@ nmap <leader>lc :lclose<cr>
 "map <leader>l :call RunLastSpec()<CR>
 "map <leader>a :call RunAllSpecs()<CR>
 
-"syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 
-"let g:syntastic_always_populate_loc_list = 0
-"let g:syntastic_auto_loc_list = 0
-"let g:syntastic_check_on_open = 0
-"let g:syntastic_check_on_wq = 0
-"let g:syntastic_ruby_checkers = ['rubocop']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_ruby_checkers = ['rubocop']
 
 command! Difft windo diffthis
 command! Diffo windo diffoff

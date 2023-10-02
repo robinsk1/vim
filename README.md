@@ -30,11 +30,11 @@ $ ln -s ~/.vim/vimrc ~/.vimrc
 ```
 $ brew install macvim
 
-run :PlugInstall
+:PlugInstall
 
 gem install solargraph
 
-install coc extensions as required
+:CocInstall coc-solargraph
 
 ```
 ### useful links
