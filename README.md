@@ -22,6 +22,7 @@ $ asdf global ruby latest
 $ cd ~
 $ git clone git@github.com:robinsk1/vim.git .vim
 $ ln -s ~/.vim/vimrc ~/.vimrc
+$ ln -s ~/.vim/zshrc ~/.zshrc
 
 ```
 ### setup macvim
