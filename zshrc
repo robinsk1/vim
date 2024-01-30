@@ -102,11 +102,21 @@ source $ZSH/oh-my-zsh.sh
 prompt_context(){}
 
 alias be="bundle exec"
-alias zshconfig="mate ~/.zshrc"
-alias ohmyzsh="mate ~/.oh-my-zsh"
+alias zshcrc="mvim ~/.zshrc"
+alias ohmyzsh="mvim ~/.oh-my-zsh"
+alias mvim='/Applications/MacVim.app/Contents/MacOS/Vim -g'
+
+alias dcdr="docker-compose -f docker-compose.dev.yml run --rm web bin/rails"
+alias dcdw="docker-compose -f docker-compose.dev.yml run --rm web"
+alias dcd="docker-compose -f docker-compose.dev.yml"
+alias dcdpsql="docker-compose -f docker-compose.dev.yml run --rm db psql -U user -d _development -h db"
+alias dcdpsql='docker-compose -f docker-compose.dev.yml run --rm db psql -U user -d _development -h db'
 
 . "/opt/homebrew/opt/asdf/libexec/asdf.sh"
 . "/opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash"
 
-export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 export PATH="`yarn global bin`:$PATH"
+export PATH="${HOME}/.pyenv/shims:${PATH}"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
