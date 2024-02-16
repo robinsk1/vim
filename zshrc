@@ -111,6 +111,7 @@ alias dcdw="docker-compose -f docker-compose.dev.yml run --rm web"
 alias dcd="docker-compose -f docker-compose.dev.yml"
 alias dcdpsql="docker-compose -f docker-compose.dev.yml run --rm db psql -U user -d _development -h db"
 alias dcdpsql='docker-compose -f docker-compose.dev.yml run --rm db psql -U user -d _development -h db'
+alias gbsd='git branch --sort=-committerdate'
 
 . "/opt/homebrew/opt/asdf/libexec/asdf.sh"
 . "/opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash"
